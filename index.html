@@ -76,6 +76,27 @@
             background-color: var(--accent-teal);
         }
 
+        nav {
+            max-width: 900px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 1rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+        
+        nav a {
+            color: var(--accent-pink);
+            border-bottom: 2px dashed var(--accent-pink);
+            padding-bottom: 2px;
+        }
+        
+        nav a:hover {
+            color: var(--bg-color);
+            background-color: var(--accent-pink);
+        }
+
         main {
             max-width: 900px;
             margin: 0 auto;
@@ -416,6 +437,9 @@
     </script>
 </head>
 <body>
+    <nav>
+        <a href="blog-geo-fintech.html">Blog</a>
+    </nav>
 
     <main>
         <section class="hero" id="home">
