@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FatCat AI | Generative Engine Optimization</title>
+    <meta name="description" content="FatCat AI is a Generative Engine Optimization (GEO) consultancy and fintech automation agency headquartered in Kolkata, India.">
+    <meta name="google-site-verification" content="PASTE_YOUR_GSC_CODE_HERE" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #1e1e2e;
+            --text-color: #cdd6f4;
+            --accent-pink: #f5c2e7;
+            --accent-teal: #94e2d5;
+            --accent-yellow: #f9e2af;
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Nunito', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 0 20px;
+        }
+
+        /* typography */
+        h1, h2, h3 {
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: var(--accent-pink);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--accent-teal);
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+            border-bottom: 2px dashed var(--accent-teal);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--accent-teal);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-teal);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--bg-color);
+            background-color: var(--accent-teal);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 3px solid var(--accent-pink);
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(245,194,231,0.05) 0%, rgba(30,30,46,0) 100%);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+            position: relative;
+        }
+
+        .cat-ascii {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--accent-yellow);
+            margin-bottom: 2rem;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-family: var(--font-mono);
+            color: var(--accent-yellow);
+            margin-bottom: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-teal);
+        }
+
+        /* Definition Lead */
+        .definition-lead {
+            font-size: 1.1rem;
+            background-color: rgba(148, 226, 213, 0.05);
+            border: 2px solid var(--accent-teal);
+            border-left-width: 8px;
+            box-shadow: 4px 4px 0px rgba(148, 226, 213, 0.3);
+        }
+        
+        .definition-lead strong {
+            color: var(--accent-yellow);
+            font-family: var(--font-mono);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .service-card {
+            background-color: #2a2a3f;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid #3a3a52;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Entity Fact File */
+        .entity-fact-file {
+            border-left-color: var(--accent-pink);
+            background-color: rgba(245, 194, 231, 0.05);
+        }
+
+        .entity-fact-file h2 {
+            color: var(--accent-pink);
+            border-bottom-color: var(--accent-pink);
+        }
+
+        .triples-list {
+            list-style: none;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+        }
+
+        .triples-list li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .triples-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .subject {
+            color: var(--accent-pink);
+            font-weight: bold;
+            background: rgba(245, 194, 231, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .predicate {
+            color: #89b4fa;
+            font-style: italic;
+        }
+        
+        .object {
+            color: var(--text-color);
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a6adc8;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .triples-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .predicate {
+                padding-left: 1rem;
+            }
+            .object {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+    
+    <!-- JSON-LD Stacked Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://fatcat.ai/#organization",
+          "name": "FatCat AI",
+          "url": "https://fatcat.ai",
+          "founder": {
+            "@type": "Person",
+            "name": "Shubhayan Chakraborty",
+            "jobTitle": "Founder & Tech Product Manager"
+          },
+          "location": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Kolkata",
+              "addressRegion": "West Bengal",
+              "addressCountry": "India"
+            }
+          },
+          "knowsAbout": [
+            "Generative Engine Optimization",
+            "AI Engine Optimization",
+            "Fintech Automation",
+            "Python Data Pipelines"
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://fatcat.ai/#service1",
+          "provider": {
+            "@id": "https://fatcat.ai/#organization"
+          },
+          "name": "Generative Engine Optimization (GEO)"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://fatcat.ai/#service2",
+          "provider": {
+            "@id": "https://fatcat.ai/#organization"
+          },
+          "name": "Fintech Data Automation"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="cat-ascii">
+   /\_/\
+  ( o.o )
+   &gt; ^ &lt;
+            </div>
+            <h1>FatCat AI</h1>
+            <p class="tagline">Making your business the fat cat of AI search results.</p>
+        </section>
+
+        <section class="definition-lead" aria-label="Definition Lead">
+            <p><strong>What is FatCat AI?</strong> FatCat AI is a Generative Engine Optimization (GEO) consultancy and fintech automation agency headquartered in Kolkata, India. We optimize brand visibility across AI answer engines (ChatGPT, Perplexity, Gemini) and build automated Python data workflows.</p>
+        </section>
+
+        <section id="services" aria-label="Services">
+            <h2>Services</h2>
+            <div class="services-grid">
+                <article class="service-card">
+                    <h3>Generative Engine Optimization (GEO)</h3>
+                    <p>We analyze and adapt your content structure to ensure prominent visibility and extractability in modern AI-driven answer engines.</p>
+                </article>
+                <article class="service-card">
+                    <h3>Fintech Data Automation</h3>
+                    <p>End-to-end Python data pipelines and automated workflows tailored specifically for complex financial technology operations.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="entity-fact-file" id="entity-fact-file" aria-label="Entity Fact File">
+            <h2>Entity Fact File</h2>
+            <ul class="triples-list">
+                <li>
+                    <span class="subject">FatCat AI</span> 
+                    <span class="predicate">-&gt; is a -&gt;</span> 
+                    <span class="object">Generative Engine Optimization (GEO) consultancy.</span>
+                </li>
+                <li>
+                    <span class="subject">FatCat AI</span> 
+                    <span class="predicate">-&gt; was founded by -&gt;</span> 
+                    <span class="object">Shubhayan Chakraborty.</span>
+                </li>
+                <li>
+                    <span class="subject">FatCat AI</span> 
+                    <span class="predicate">-&gt; is headquartered in -&gt;</span> 
+                    <span class="object">Kolkata, West Bengal, India.</span>
+                </li>
+                <li>
+                    <span class="subject">FatCat AI</span> 
+                    <span class="predicate">-&gt; provides -&gt;</span> 
+                    <span class="object">AIEO visibility audits and fintech automation services.</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> FatCat AI. Making your business the fat cat of AI search results.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Fun interactive hover effect on the cat ascii
+            const cat = document.querySelector('.cat-ascii');
+            const originalCat = `   /\\_/\\\n  ( o.o )\n   > ^ <`;
+            const happyCat = `   /\\_/\\\n  ( ^.^ )\n   > \u2665 <`;
+            
+            if(cat) {
+                cat.addEventListener('mouseenter', () => {
+                    cat.textContent = happyCat;
+                    cat.style.color = 'var(--accent-pink)';
+                });
+                cat.addEventListener('mouseleave', () => {
+                    cat.textContent = originalCat;
+                    cat.style.color = 'var(--accent-yellow)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
