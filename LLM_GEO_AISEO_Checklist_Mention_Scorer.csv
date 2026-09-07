@@ -1,0 +1,103 @@
+Source / Backlink,Google AI,Perplexity,ChatGPT,Claude,Total Mentions,Total Points
+https://searchendurance.com/content-writing-tools-for-seo/,TRUE,TRUE,TRUE,TRUE,4,20
+https://zapier.com/blog/best-seo-content-optimization-tools/,TRUE,FALSE,TRUE,FALSE,2,10
+https://bloggingwizard.com/content-writing-tools-for-seo/,FALSE,FALSE,TRUE,TRUE,2,10
+https://neuronwriter.com/,FALSE,FALSE,TRUE,FALSE,1,5
+https://www.outranking.io/,FALSE,FALSE,TRUE,FALSE,1,5
+https://seowriting.ai/,FALSE,FALSE,TRUE,FALSE,1,5
+https://surferseo.com/blog/best-content-writing-tools/,TRUE,TRUE,TRUE,FALSE,3,15
+https://thecmo.com/tools/best-ai-content-writing-tools/,FALSE,FALSE,TRUE,FALSE,1,5
+https://www.rankability.com/blog/best-seo-content-optimization-tools/,TRUE,FALSE,FALSE,TRUE,2,10
+https://selfmademillennials.com/content-writing-tools-for-seo/,FALSE,TRUE,FALSE,TRUE,2,10
+https://www.frase.io/,FALSE,FALSE,FALSE,TRUE,1,5
+https://sintra.ai/blog/best-seo-writing-tools,FALSE,FALSE,FALSE,TRUE,1,5
+https://medium.com/freelancers-hub/6-ai-writing-tools-to-enhance-your-content-creation-in-2025-d9f064ac2d5c,FALSE,FALSE,FALSE,TRUE,1,5
+https://www.seosolved.com/blog/seo-content-writing-tools-2025,FALSE,FALSE,FALSE,TRUE,1,5
+https://digitalcommerce.com/content-writing-tools/,FALSE,FALSE,FALSE,TRUE,1,5
+https://aioseo.com/best-content-writing-tools/,TRUE,TRUE,FALSE,TRUE,3,15
+https://www.reddit.com/r/SEO/comments/12nks1p/content_writing_seo_optimization_tools_i_am/,FALSE,TRUE,FALSE,FALSE,1,5
+https://www.contentellect.com/content-writing-tools-for-seo/,FALSE,TRUE,FALSE,FALSE,1,5
+https://www.clearscope.io/blog/best-ai-content-writing-tools,FALSE,TRUE,FALSE,FALSE,1,5
+https://albato.com/blog/publications/the-best-ai-tools-2025,TRUE,FALSE,FALSE,FALSE,1,5
+https://www.devopsschool.com/blog/top-10-ai-press-release-generators-in-2025-features-pros-cons-comparison/,TRUE,FALSE,FALSE,FALSE,1,5
+https://www.fortismedia.com/en/industries/igaming-seo-services/,TRUE,FALSE,FALSE,FALSE,1,5
+https://www.host-stage.net/case-study/ai-seo-tools-comparison/,TRUE,FALSE,FALSE,FALSE,1,5
+https://www.aprimo.com/blog/content-speed-ai-personalization,TRUE,FALSE,FALSE,FALSE,1,5
+https://storychief.io/blog/best-ai-seo-content-generators,TRUE,FALSE,FALSE,FALSE,1,5
+https://seosyrup.co.uk/best-ai-tools-for-content-writing/,TRUE,FALSE,FALSE,FALSE,1,5
+https://aioseo.com/best-seo-writing-assistant/,TRUE,FALSE,FALSE,FALSE,1,5
+https://www.saffronedge.com/ai/seo-writing-ai/,TRUE,FALSE,FALSE,FALSE,1,5
+https://landingi.com/seo/best-tools/,TRUE,FALSE,FALSE,FALSE,1,5
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,0,0
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+"You are helping me clean and format backlink mention data for a Google Sheets tracker.
+
+I will paste a raw list of URLs grouped under text labels that indicate which AI system mentioned them.
+
+The labels will be:
+
+Google AI
+
+Perplexity
+
+ChatGPT
+
+Claude
+
+Under each label is a list of URLs mentioned by that system.
+
+Your tasks:
+
+Deduplicate all URLs across all systems.
+
+Treat the same URL appearing under multiple systems as the same source.
+
+Create one final row per unique URL.
+
+Mark whether each URL was mentioned by each system using TRUE or FALSE.
+
+Output the final result in a clean table that matches this exact column order:
+
+Column A: Source / Backlink
+Column B: Google AI (checkbox)
+Column C: Perplexity (checkbox)
+Column D: ChatGPT (checkbox)
+Column E: Claude (checkbox)",,,,,,
