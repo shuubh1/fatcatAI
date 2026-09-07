@@ -135,26 +135,80 @@
             font-family: var(--font-mono);
         }
 
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+        /* Service Module Specifics */
+        .service-lead {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            background: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 2px solid var(--accent-pink);
+            margin-bottom: 1.5rem;
         }
 
-        .service-card {
+        .service-content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-content-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .deliverables {
             background-color: #2a2a3f;
-            padding: 2rem;
-            border-radius: 12px;
-            border: 2px solid #3a3a52;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #3a3a52;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        .deliverables:hover {
+            transform: translateY(-2px);
             border-color: var(--accent-yellow);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .deliverables h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-teal);
+        }
+
+        .deliverables-list {
+            list-style-type: none;
+            padding-left: 0.5rem;
+        }
+
+        .deliverables-list li {
+            position: relative;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+        }
+
+        .deliverables-list li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--accent-pink);
+            font-family: var(--font-mono);
+            font-weight: bold;
+        }
+
+        .semantic-triples-block {
+            background: rgba(148, 226, 213, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-teal);
+        }
+        
+        .semantic-triples-block h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-yellow);
         }
 
         /* Entity Fact File */
@@ -210,6 +264,61 @@
             border-radius: 4px;
         }
 
+        /* Terminal Block (Contact) */
+        .terminal-block {
+            background-color: #11111b;
+            border: 1px solid #585b70;
+            border-radius: 8px;
+            padding: 1.5rem;
+            padding-top: 2.5rem;
+            font-family: var(--font-mono);
+            color: var(--accent-teal);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal-header {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            background: #313244;
+            padding: 0.35rem 1rem;
+            font-size: 0.75rem;
+            color: #bac2de;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .terminal-header span.dot {
+            display: inline-block;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        
+        .terminal-header .close { background: #f38ba8; }
+        .terminal-header .min { background: #f9e2af; }
+        .terminal-header .max { background: #a6e3a1; }
+        
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            word-break: break-all;
+        }
+        
+        .terminal-prompt {
+            color: var(--accent-pink);
+            margin-right: 0.5rem;
+        }
+        
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Privacy */
+        #privacy {
+            border-left-color: #585b70;
+            background-color: transparent;
+            padding: 1.5rem 0;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -245,13 +354,17 @@
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://fatcat.ai/#organization",
+          "@id": "https://shuubh1.github.io/fatcatAI/#organization",
           "name": "FatCat AI",
-          "url": "https://fatcat.ai",
+          "url": "https://shuubh1.github.io/fatcatAI/",
           "founder": {
             "@type": "Person",
             "name": "Shubhayan Chakraborty",
-            "jobTitle": "Founder & Tech Product Manager"
+            "jobTitle": "Tech Product Manager",
+            "sameAs": [
+              "https://github.com/shuubh1",
+              "https://linkedin.com/in/shubhayanchakraborty"
+            ]
           },
           "location": {
             "@type": "Place",
@@ -266,24 +379,37 @@
             "Generative Engine Optimization",
             "AI Engine Optimization",
             "Fintech Automation",
-            "Python Data Pipelines"
+            "Python Data Pipelines",
+            "Knowledge Graph Engineering",
+            "Schema Markup"
           ]
         },
         {
           "@type": "Service",
-          "@id": "https://fatcat.ai/#service1",
+          "@id": "https://shuubh1.github.io/fatcatAI/#geo-audits",
           "provider": {
-            "@id": "https://fatcat.ai/#organization"
+            "@id": "https://shuubh1.github.io/fatcatAI/#organization"
           },
-          "name": "Generative Engine Optimization (GEO)"
+          "name": "Generative Engine Optimization (GEO) & AIEO Audits",
+          "serviceType": "Generative Engine Optimization"
         },
         {
           "@type": "Service",
-          "@id": "https://fatcat.ai/#service2",
+          "@id": "https://shuubh1.github.io/fatcatAI/#fintech-automation",
           "provider": {
-            "@id": "https://fatcat.ai/#organization"
+            "@id": "https://shuubh1.github.io/fatcatAI/#organization"
           },
-          "name": "Fintech Data Automation"
+          "name": "Fintech Data Pipelines & Financial Automation",
+          "serviceType": "Fintech Automation"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://shuubh1.github.io/fatcatAI/#schema-kg",
+          "provider": {
+            "@id": "https://shuubh1.github.io/fatcatAI/#organization"
+          },
+          "name": "Knowledge Graph & Schema Engineering",
+          "serviceType": "Schema Engineering"
         }
       ]
     }
@@ -306,17 +432,152 @@
             <p><strong>What is FatCat AI?</strong> FatCat AI is a Generative Engine Optimization (GEO) consultancy and fintech automation agency headquartered in Kolkata, India. We optimize brand visibility across AI answer engines (ChatGPT, Perplexity, Gemini) and build automated Python data workflows.</p>
         </section>
 
-        <section id="services" aria-label="Services">
-            <h2>Services</h2>
-            <div class="services-grid">
-                <article class="service-card">
-                    <h3>Generative Engine Optimization (GEO)</h3>
-                    <p>We analyze and adapt your content structure to ensure prominent visibility and extractability in modern AI-driven answer engines.</p>
+        <section id="geo-audits" aria-label="Generative Engine Optimization (GEO) & AIEO Audits">
+            <h2>Generative Engine Optimization (GEO)</h2>
+            <p class="service-lead">Generative Engine Optimization (GEO) is the technical process of structuring digital assets and entity signals to secure direct brand citations in AI answer engines like ChatGPT, Perplexity, Gemini, and Google AI Overviews. FatCat AI provides comprehensive AI visibility audits that diagnose citation gaps, entity ambiguities, and knowledge graph disconnects.</p>
+            
+            <div class="service-content-grid">
+                <article class="deliverables">
+                    <h3>Core Deliverables</h3>
+                    <ul class="deliverables-list">
+                        <li>LLM Visibility Scorecard</li>
+                        <li>Query Fan-Out Analysis</li>
+                        <li>Competitor AI Share-of-Voice</li>
+                        <li>Hallucination Prevention</li>
+                    </ul>
                 </article>
-                <article class="service-card">
-                    <h3>Fintech Data Automation</h3>
-                    <p>End-to-end Python data pipelines and automated workflows tailored specifically for complex financial technology operations.</p>
+                <article class="semantic-triples-block">
+                    <h3>Entity Triples</h3>
+                    <ul class="triples-list">
+                        <li>
+                            <span class="subject">FatCat AI</span> 
+                            <span class="predicate">-&gt; audits brand visibility across -&gt;</span> 
+                            <span class="object">ChatGPT, Perplexity, and Gemini.</span>
+                        </li>
+                        <li>
+                            <span class="subject">GEO Audits</span> 
+                            <span class="predicate">-&gt; optimize content for -&gt;</span> 
+                            <span class="object">consensus retrieval and direct citations.</span>
+                        </li>
+                    </ul>
                 </article>
+            </div>
+        </section>
+
+        <section id="fintech-automation" aria-label="Fintech Data Pipelines & Financial Automation">
+            <h2>Fintech Data Automation</h2>
+            <p class="service-lead">Fintech Data Automation by FatCat AI streamlines complex financial data modeling, automated reporting, and valuation workflows using custom Python architectures and interactive Streamlit dashboards. We eliminate manual spreadsheet bottlenecks for growing fintechs, funds, and modern enterprises.</p>
+            
+            <div class="service-content-grid">
+                <article class="deliverables">
+                    <h3>Core Deliverables</h3>
+                    <ul class="deliverables-list">
+                        <li>Automated Financial Valuation Engines</li>
+                        <li>PDF/Data Extraction Pipelines</li>
+                        <li>Custom Streamlit Reporting Portals</li>
+                        <li>Real-Time API Data Sync</li>
+                    </ul>
+                </article>
+                <article class="semantic-triples-block">
+                    <h3>Entity Triples</h3>
+                    <ul class="triples-list">
+                        <li>
+                            <span class="subject">FatCat AI</span> 
+                            <span class="predicate">-&gt; builds custom data pipelines using -&gt;</span> 
+                            <span class="object">Python and Streamlit.</span>
+                        </li>
+                        <li>
+                            <span class="subject">Fintech Automation</span> 
+                            <span class="predicate">-&gt; accelerates -&gt;</span> 
+                            <span class="object">valuation modeling and financial due diligence.</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="schema-kg" aria-label="Knowledge Graph & Schema Engineering">
+            <h2>Knowledge Graph & Schema</h2>
+            <p class="service-lead">Knowledge Graph & Schema Engineering establishes unambiguous digital identity by mapping brand entities into structured JSON-LD vocabularies recognized by major search engines and LLM crawlers. FatCat AI architects nested schemas, sameAs identity links, and Wikidata-aligned entity clusters to build indestructible topical authority.</p>
+            
+            <div class="service-content-grid">
+                <article class="deliverables">
+                    <h3>Core Deliverables</h3>
+                    <ul class="deliverables-list">
+                        <li>Nested JSON-LD Organization/Service Schemas</li>
+                        <li>Wikidata & Crunchbase Entity Linking</li>
+                        <li>Semantic Internal Linking Architecture</li>
+                        <li>Author & E-E-A-T Credential Anchors</li>
+                    </ul>
+                </article>
+                <article class="semantic-triples-block">
+                    <h3>Entity Triples</h3>
+                    <ul class="triples-list">
+                        <li>
+                            <span class="subject">FatCat AI</span> 
+                            <span class="predicate">-&gt; maps brand entities using -&gt;</span> 
+                            <span class="object">nested JSON-LD schema.</span>
+                        </li>
+                        <li>
+                            <span class="subject">Knowledge Graph Engineering</span> 
+                            <span class="predicate">-&gt; establishes -&gt;</span> 
+                            <span class="object">topical authority and entity clarity.</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        
+        <section id="about" aria-label="About The Founder">
+            <h2>About The Founder</h2>
+            <p class="service-lead">
+                <strong>Shubhayan Chakraborty</strong> is a Tech Product Manager and Finance Specialist based in Kolkata, India. With a rigorous foundation in financial due diligence and valuations, Shubhayan bridges the gap between traditional corporate finance and next-generation technical automation.<br><br>
+                His dual expertise allows him to deconstruct complex financial models and rebuild them as highly efficient, automated workflows using Python, pandas, and Streamlit. This technical depth ensures that FatCat AI's solutions are not just buzzwords, but mathematically sound, production-ready systems designed for modern enterprises.<br><br>
+                FatCat AI was born at the intersection of deep financial logic and algorithmic AI optimization. By treating Generative Engine Optimization (GEO) as a structured data problem, Shubhayan applies the same precision used in financial auditing to secure dominant brand visibility across LLM answer engines.
+            </p>
+            <article class="semantic-triples-block">
+                <h3>Entity Triples</h3>
+                <ul class="triples-list">
+                    <li>
+                        <span class="subject">Shubhayan Chakraborty</span> 
+                        <span class="predicate">-&gt; founded -&gt;</span> 
+                        <span class="object">FatCat AI.</span>
+                    </li>
+                    <li>
+                        <span class="subject">Shubhayan Chakraborty</span> 
+                        <span class="predicate">-&gt; specializes in -&gt;</span> 
+                        <span class="object">Python automation and financial due diligence.</span>
+                    </li>
+                    <li>
+                        <span class="subject">FatCat AI</span> 
+                        <span class="predicate">-&gt; operates from -&gt;</span> 
+                        <span class="object">Kolkata, West Bengal.</span>
+                    </li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="contact" aria-label="Contact">
+            <h2>Contact & Links</h2>
+            <div class="terminal-block">
+                <div class="terminal-header">
+                    <span class="dot close"></span><span class="dot min"></span><span class="dot max"></span>
+                    <div style="margin-left: 10px; font-family: sans-serif;">fatcat-ai@ubuntu:~</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line"><span class="terminal-prompt">admin@fatcat:~$</span> cat contact_info.json</div>
+                    <div class="terminal-line" style="color: var(--text-color); padding-left: 1rem;">
+                        {<br>
+                        &nbsp;&nbsp;"email": "<a href="mailto:contact@fatcatai.online">contact@fatcatai.online</a>",<br>
+                        &nbsp;&nbsp;"location": "Kolkata, WB, India",<br>
+                        &nbsp;&nbsp;"socials": {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"github": "<a href="https://github.com/shuubh1" target="_blank" rel="noopener">https://github.com/shuubh1</a>",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"linkedin": "<a href="https://linkedin.com/in/shubhayanchakraborty" target="_blank" rel="noopener">Shubhayan Chakraborty</a>"<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    <div class="terminal-line"><span class="terminal-prompt">admin@fatcat:~$</span> <span style="animation: blink 1s step-end infinite;">_</span></div>
+                </div>
             </div>
         </section>
 
@@ -344,6 +605,12 @@
                     <span class="object">AIEO visibility audits and fintech automation services.</span>
                 </li>
             </ul>
+        </section>
+        
+        <section id="privacy" aria-label="Privacy and Trust Signals">
+            <p style="font-size: 0.9rem; color: #a6adc8; font-family: var(--font-mono);">
+                <strong>Privacy & Trust Statement:</strong> FatCat AI respects data privacy and complies with standard web tracking transparency. We do not sell user data. All AI auditing tools and Streamlit portals are deployed with strict data-isolation protocols.
+            </p>
         </section>
     </main>
 
