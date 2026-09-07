@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Audit Your Brand's AI Visibility (A Step-by-Step Guide)</title>
+    <meta name="description" content="Learn how to conduct an AI visibility audit to measure your brand's Share of Voice in ChatGPT and Perplexity using Generative Engine Optimization.">
+    <link rel="canonical" href="https://shuubh1.github.io/fatcatAI/blog-ai-visibility-audit.html">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #1e1e2e;
+            --text-color: #cdd6f4;
+            --accent-pink: #f38ba8;
+            --accent-cyan: #89dceb;
+            --accent-yellow: #f9e2af;
+            --surface-color: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Nunito', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--accent-pink);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--accent-cyan);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed var(--accent-cyan);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--accent-yellow);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-cyan);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--bg-color);
+            background-color: var(--accent-cyan);
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Layout */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0 4rem 0;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: var(--surface-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Specialized Blocks */
+        .definition-lead {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background-color: rgba(137, 220, 235, 0.05);
+            border: 2px solid var(--accent-cyan);
+            border-left-width: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px rgba(137, 220, 235, 0.2);
+        }
+
+        .semantic-triples-block {
+            background: rgba(243, 139, 168, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed var(--accent-pink);
+            margin: 2rem 0;
+        }
+        
+        .semantic-triples-block h3 {
+            margin-top: 0;
+            color: var(--accent-pink);
+        }
+
+        .triples-list {
+            list-style: none;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            padding-left: 0;
+        }
+
+        .triples-list li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .triples-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .subject {
+            color: var(--accent-pink);
+            font-weight: bold;
+            background: rgba(243, 139, 168, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .predicate {
+            color: #bac2de;
+            font-style: italic;
+        }
+        
+        .object {
+            color: var(--text-color);
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* E-E-A-T Bio Block */
+        .bio-block {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            background: #11111b;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .bio-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            color: var(--bg-color);
+            flex-shrink: 0;
+        }
+
+        .bio-content h3 {
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            color: var(--accent-cyan);
+        }
+        
+        .bio-content p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #bac2de;
+        }
+
+        /* CTA */
+        .cta-card {
+            background: linear-gradient(135deg, rgba(243,139,168,0.1) 0%, rgba(137,220,235,0.1) 100%);
+            border: 2px solid var(--accent-pink);
+            padding: 2.5rem;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-pink);
+            color: var(--bg-color);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px dashed var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a6adc8;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 600px) {
+            .bio-block {
+                flex-direction: column;
+                text-align: center;
+            }
+            .triples-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+            .predicate, .object {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "headline": "How to Audit Your Brand's AI Visibility (A Step-by-Step Guide)",
+          "url": "https://shuubh1.github.io/fatcatAI/blog-ai-visibility-audit.html",
+          "author": {
+            "@type": "Person",
+            "name": "Shubhayan Chakraborty",
+            "jobTitle": "Founder & Tech Product Manager",
+            "url": "https://shuubh1.github.io/fatcatAI/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://shuubh1.github.io/fatcatAI/#organization",
+            "name": "FatCat AI"
+          },
+          "about": [
+            { "@type": "Thing", "name": "Audit" },
+            { "@type": "Thing", "name": "Artificial Intelligence" },
+            { "@type": "Thing", "name": "Search Engine Optimization" }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <a href="index.html" class="breadcrumb">← Back to FatCat AI Home</a>
+
+        <article>
+            <header>
+                <h1>How to Audit Your Brand's AI Visibility (A Step-by-Step Guide)</h1>
+            </header>
+
+            <section>
+                <h2>What is an AI visibility audit?</h2>
+                <div class="definition-lead">
+                    An AI visibility audit is the technical process of measuring how often and how accurately a brand is cited by generative engines like ChatGPT, Perplexity, and Google AI Overviews. It involves executing Query Fan-Out testing, auditing JSON-LD schema for entity resolution gaps, and scoring algorithmic share-of-voice against competitors.
+                </div>
+            </section>
+
+            <section>
+                <h2>Step 1 - The Query Fan-Out Test</h2>
+                <p>The foundation of any Generative Engine Optimization strategy begins with a Query Fan-Out Test. You must systematically input navigational (e.g., "What is [Brand Name]?"), transactional (e.g., "Best tools for [Service]"), and informational prompts into LLMs like ChatGPT and <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity AI</a>.</p>
+                <p>Observe the outputs closely: does the AI hallucinate facts about your pricing, ignore your brand entirely in favor of a competitor, or provide a highly accurate citation? Documenting these baseline responses highlights exactly where your algorithmic authority is failing.</p>
+            </section>
+
+            <section>
+                <h2>Step 2 - Entity Resolution & Schema Checking</h2>
+                <p>If you failed the first step, the culprit is likely poor <a href="blog-why-invisible-to-chatgpt.html">entity resolution</a>. Open your website's source code and inspect the <code>&lt;head&gt;</code> section. Are you utilizing nested Organization and Service schema?</p>
+                <p>LLMs rely on structured data to confidently extract facts. Run your URL through the <a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema Markup Validator</a> to ensure your brand's digital entity explicitly links to authoritative knowledge bases like Wikidata and Crunchbase, bridging the gap between ambiguous text and verifiable facts.</p>
+            </section>
+
+            <section>
+                <h2>Step 3 - Calculating AI Share of Voice (SOV)</h2>
+                <p>Throw out <a href="blog-seo-vs-geo.html">outdated metrics</a> like keyword density and traditional domain authority. The new benchmark is AI Share of Voice (SOV). By tracking your brand's citations across multiple LLMs for your core industry queries, you can build a scoring matrix to determine your actual market penetration in generative search. A high SOV means you are the consensus answer; a low SOV means you are invisible.</p>
+            </section>
+
+            <section class="semantic-triples-block">
+                <h3>Entity Verification Data</h3>
+                <ul class="triples-list">
+                    <li>
+                        <span class="subject">FatCat AI</span> 
+                        <span class="predicate">-&gt; conducts -&gt;</span> 
+                        <span class="object">AI visibility audits for B2B brands.</span>
+                    </li>
+                    <li>
+                        <span class="subject">AI Visibility Audits</span> 
+                        <span class="predicate">-&gt; measure -&gt;</span> 
+                        <span class="object">algorithmic share-of-voice and entity resolution.</span>
+                    </li>
+                    <li>
+                        <span class="subject">Generative engines</span> 
+                        <span class="predicate">-&gt; require -&gt;</span> 
+                        <span class="object">structured data to prevent hallucinations.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bio-block">
+                <div class="bio-avatar">SC</div>
+                <div class="bio-content">
+                    <h3>Shubhayan Chakraborty</h3>
+                    <p><strong>Founder at FatCat AI</strong><br>
+                    Based in Kolkata, Shubhayan engineers automated mention-scoring pipelines and conducts technical GEO audits to help brands dominate the new era of generative search.</p>
+                </div>
+            </section>
+
+            <section class="cta-card">
+                <h2>Don't want to do this manually?</h2>
+                <p>Book a comprehensive Generative Engine Audit with FatCat AI today and get your exact LLM visibility score.</p>
+                <a href="index.html#contact" class="cta-button">Book a Generative Engine Audit</a>
+            </section>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FatCat AI. Hijack the algorithm. Automate the data.</p>
+    </footer>
+
+</body>
+</html>
