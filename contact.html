@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request an AI Visibility Audit | FatCat AI</title>
+    <meta name="description" content="Request a Generative Engine Optimization (GEO) audit. Submit your brand details to receive a technical LLM visibility assessment from FatCat AI.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #1e1e2e;
+            --text-color: #cdd6f4;
+            --accent-pink: #f38ba8;
+            --accent-cyan: #89dceb;
+            --accent-yellow: #f9e2af;
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Nunito', sans-serif;
+            --surface-color: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 0 20px;
+        }
+
+        /* Nav */
+        nav {
+            max-width: 900px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 1rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+        
+        nav a {
+            color: var(--accent-pink);
+            border-bottom: 2px dashed var(--accent-pink);
+            padding-bottom: 2px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        nav a:hover {
+            color: var(--bg-color);
+            background-color: var(--accent-pink);
+        }
+
+        /* Typography */
+        h1, h2 {
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--accent-pink);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+        
+        p.lead {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #bac2de;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: var(--surface-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        .breadcrumb:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-color);
+        }
+
+        /* Form Styling */
+        form {
+            background: #11111b;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #585b70;
+            box-shadow: 4px 4px 0px rgba(137, 220, 235, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #1e1e2e;
+            border: 1px solid #585b70;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-pink);
+        }
+
+        button[type="submit"] {
+            display: inline-block;
+            width: 100%;
+            background: var(--accent-pink);
+            color: var(--bg-color);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            border: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* Success State */
+        #success-message {
+            display: none;
+            background: rgba(166, 227, 161, 0.1);
+            border: 2px solid #a6e3a1;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        #success-message h2 {
+            color: #a6e3a1;
+            margin-bottom: 1rem;
+        }
+
+        .fallback-text {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px dashed var(--border-color);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #bac2de;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #a6adc8;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Request an AI Visibility Audit | FatCat AI",
+      "url": "https://shuubh1.github.io/fatcatAI/contact.html",
+      "description": "Client intake form for Generative Engine Optimization audits and fintech automation services.",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://shuubh1.github.io/fatcatAI/#organization"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <nav>
+        <a href="blog-geo-fintech.html">Fintech GEO</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+        <a href="blog-how-to-get-cited-by-ai.html">How to Get Cited by AI</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+        <a href="blog-why-invisible-to-chatgpt.html">Why You're Invisible</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="blog-seo-vs-geo.html">SEO vs GEO</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="blog-ai-visibility-audit.html">AI Visibility Audit</a>
+    </nav>
+
+    <main>
+        <a href="index.html" class="breadcrumb">← Back to FatCat AI Home</a>
+        
+        <h1>Request an Audit</h1>
+        <p class="lead">Submit your brand entities below to initiate a technical Generative Engine Optimization (GEO) audit.</p>
+
+        <form id="audit-form">
+            <input type="hidden" name="apikey" value="YOUR_WEB3FORMS_KEY_HERE">
+            
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company / Website URL *</label>
+                <input type="url" id="company" name="company" required placeholder="https://example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900">
+            </div>
+
+            <div class="form-group">
+                <label for="note">AI Visibility Goals / Project Notes</label>
+                <textarea id="note" name="note" rows="5" placeholder="Tell us what you're trying to achieve..."></textarea>
+            </div>
+
+            <button type="submit" id="submit-button">Submit Entity Data</button>
+        </form>
+
+        <div id="success-message">
+            <h2>Success</h2>
+            <p>Your request has been logged in our database. We will review your entity data and reach out shortly.</p>
+        </div>
+
+        <div class="fallback-text">
+            If we don't contact you within 48 hours, or if you prefer to speak immediately, feel free to reach out to us directly:<br><br>
+            <strong style="color: var(--accent-cyan)">Email:</strong> shubhayanchakraborty002@gmail.com<br>
+            <strong style="color: var(--accent-cyan)">Phone/WhatsApp (Call & Text):</strong> +91 9433811943 or +91 9433910718
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FatCat AI. Hijack the algorithm. Automate the data.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('audit-form');
+        const successMessage = document.getElementById('success-message');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+                
+                const result = await response.json();
+                
+                if (response.status === 200) {
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                } else {
+                    console.error(result);
+                    alert("There was an error submitting the form. Please contact us directly.");
+                    submitButton.textContent = 'Submit Entity Data';
+                    submitButton.disabled = false;
+                }
+            } catch (error) {
+                console.error(error);
+                alert("There was a network error. Please contact us directly.");
+                submitButton.textContent = 'Submit Entity Data';
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
