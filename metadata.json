@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "FatCat AI",
+  "description": "FatCat AI is a Generative Engine Optimization (GEO) consultancy and fintech automation agency headquartered in Kolkata, India.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

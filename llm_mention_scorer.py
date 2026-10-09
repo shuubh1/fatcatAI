@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="FatCat AI | LLM Mention Scorer", layout="wide")
+st.set_page_config(page_title="FatCat AI Consulting | LLM Mention Scorer", layout="wide")
 
 st.markdown("""
     <style>
@@ -45,7 +45,7 @@ def load_data():
         return None
 
 def main():
-    st.title("FatCat AI : Generative Engine Share-of-Voice")
+    st.title("FatCat AI Consulting : Generative Engine Share-of-Voice")
 
     df = load_data()
 
