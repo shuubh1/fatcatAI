@@ -188,6 +188,20 @@
             margin-bottom: 1rem;
         }
 
+        /* Error State */
+        #error-message {
+            display: none;
+            background: rgba(243, 139, 168, 0.15);
+            border: 2px solid #f38ba8;
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #f38ba8;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+        }
+
         .fallback-text {
             margin-top: 2rem;
             padding-top: 2rem;
@@ -244,10 +258,12 @@
         <p class="lead">Submit your brand entities below to initiate a technical Generative Engine Optimization (GEO) audit.</p>
 
         <form id="audit-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="6c1fc566-8eb7-4c81-8dae-0316dead0531">
             <input type="hidden" name="apikey" value="6c1fc566-8eb7-4c81-8dae-0316dead0531">
-            <input type="hidden" name="redirect" value="false">
+            <input type="hidden" name="from_name" value="FatCat AI Consulting Leads">
             <input type="hidden" name="to_email" value="contact@fatcatai.consulting">
             <input type="hidden" name="subject" value="New B2B Lead: FatCat AI Consulting Intake">
+            <input type="hidden" name="redirect" value="false">
             
             <div class="form-group">
                 <label for="name">Full Name *</label>
@@ -277,6 +293,8 @@
             <button type="submit" id="submit-button">Submit Entity Data</button>
         </form>
 
+        <div id="error-message"></div>
+
         <div id="success-message">
             <h2>Success</h2>
             <p>Your request has been logged in our database. We will review your entity data and reach out shortly.</p>
@@ -298,10 +316,15 @@
     <script>
         const form = document.getElementById('audit-form');
         const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
         const submitButton = document.getElementById('submit-button');
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+                errorMessage.textContent = '';
+            }
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
 
@@ -321,18 +344,25 @@
                 
                 const result = await response.json();
                 
-                if (response.status === 200) {
+                if (response.status === 200 || result.success) {
                     form.style.display = 'none';
+                    if (errorMessage) errorMessage.style.display = 'none';
                     successMessage.style.display = 'block';
                 } else {
                     console.error(result);
-                    alert("There was an error submitting the form. Please contact us directly.");
+                    if (errorMessage) {
+                        errorMessage.textContent = result.message || "There was an error submitting the form. Please contact us directly at contact@fatcatai.consulting.";
+                        errorMessage.style.display = 'block';
+                    }
                     submitButton.textContent = 'Submit Entity Data';
                     submitButton.disabled = false;
                 }
             } catch (error) {
                 console.error(error);
-                alert("There was a network error. Please contact us directly.");
+                if (errorMessage) {
+                    errorMessage.textContent = "Network error. Please try again or contact us directly at contact@fatcatai.consulting.";
+                    errorMessage.style.display = 'block';
+                }
                 submitButton.textContent = 'Submit Entity Data';
                 submitButton.disabled = false;
             }
