@@ -399,18 +399,39 @@
 
             const playBtn = document.getElementById('play-voiceover-btn');
             const audioStatus = document.getElementById('audio-status');
+            const audioParam = (params.get('audio') || '').trim();
             let speaking = false;
+            let activeAudio = null;
 
-            playBtn.addEventListener('click', function() {
+            function pickPreferredVoice() {
+                if (!('speechSynthesis' in window)) return null;
+                const voices = window.speechSynthesis.getVoices() || [];
+                // 1. Exact match for Microsoft Andrew Multilingual Online (Natural) - English (United States)
+                let match = voices.find(v =>
+                    v.name.includes('Andrew') && v.name.includes('Multilingual') && v.name.includes('Natural')
+                );
+                // 2. Fallback to any Microsoft Andrew Online (Natural) voice
+                if (!match) {
+                    match = voices.find(v => v.name.includes('Andrew') && v.name.includes('Natural'));
+                }
+                // 3. Fallback to any Andrew voice
+                if (!match) {
+                    match = voices.find(v => v.name.includes('Andrew'));
+                }
+                // 4. Fallback to any Microsoft Online (Natural) US English voice
+                if (!match) {
+                    match = voices.find(v => v.name.includes('Natural') && (v.lang === 'en-US' || v.lang.startsWith('en-US')));
+                }
+                return match || null;
+            }
+
+            if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = pickPreferredVoice;
+            }
+
+            function playSpeechSynthesisFallback() {
                 if (!('speechSynthesis' in window)) {
                     audioStatus.textContent = 'Please check the MP3 voiceover attached directly to your audit email.';
-                    return;
-                }
-                if (speaking) {
-                    window.speechSynthesis.cancel();
-                    speaking = false;
-                    playBtn.textContent = '▶ Play Audio Breakdown';
-                    audioStatus.textContent = 'Playback paused.';
                     return;
                 }
                 window.speechSynthesis.cancel();
@@ -422,12 +443,17 @@
                     `Click Book 3-Minute Audit Walkthrough below so we can show your team how to capture these citations.`;
 
                 const utterance = new SpeechSynthesisUtterance(scriptText);
+                const preferredVoice = pickPreferredVoice();
+                if (preferredVoice) {
+                    utterance.voice = preferredVoice;
+                }
+                utterance.lang = 'en-US';
                 utterance.rate = 1.0;
-                utterance.pitch = 0.98;
+                utterance.pitch = 1.0;
                 utterance.onstart = function() {
                     speaking = true;
                     playBtn.textContent = '⏹ Stop Audio';
-                    audioStatus.textContent = `Playing personalized audit briefing for ${company}...`;
+                    audioStatus.textContent = `Playing personalized audit briefing for ${company} (Microsoft Andrew Multilingual)...`;
                 };
                 utterance.onend = function() {
                     speaking = false;
@@ -435,6 +461,54 @@
                     audioStatus.textContent = 'Briefing complete.';
                 };
                 window.speechSynthesis.speak(utterance);
+            }
+
+            playBtn.addEventListener('click', function() {
+                if (speaking) {
+                    if (activeAudio) {
+                        activeAudio.pause();
+                        activeAudio.currentTime = 0;
+                        activeAudio = null;
+                    }
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                    }
+                    speaking = false;
+                    playBtn.textContent = '▶ Play Audio Breakdown';
+                    audioStatus.textContent = 'Playback paused.';
+                    return;
+                }
+
+                // Try playing pre-synthesized Edge-TTS en-US-AndrewMultilingualNeural MP3 first
+                const candidateMp3 = audioParam
+                    ? `/audit/${encodeURIComponent(audioParam)}`
+                    : (company.toLowerCase().includes('fatcat') ? '/audit/audit-briefing.mp3' : '');
+
+                if (candidateMp3) {
+                    const audioObj = new Audio(candidateMp3);
+                    activeAudio = audioObj;
+                    audioObj.onplay = function() {
+                        speaking = true;
+                        playBtn.textContent = '⏹ Stop Audio';
+                        audioStatus.textContent = `Playing personalized audit briefing for ${company} (Microsoft Andrew Multilingual Neural)...`;
+                    };
+                    audioObj.onended = function() {
+                        speaking = false;
+                        activeAudio = null;
+                        playBtn.textContent = '▶ Replay Audio Breakdown';
+                        audioStatus.textContent = 'Briefing complete.';
+                    };
+                    audioObj.onerror = function() {
+                        activeAudio = null;
+                        playSpeechSynthesisFallback();
+                    };
+                    audioObj.play().catch(function() {
+                        activeAudio = null;
+                        playSpeechSynthesisFallback();
+                    });
+                } else {
+                    playSpeechSynthesisFallback();
+                }
             });
         })();
     </script>
