@@ -1,14 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to AI Visibility Audit...</title>
-    <script>
-        window.location.replace('/audit/' + window.location.search);
-    </script>
+    <title>Executive AI Visibility Audit | FatCat AI Consulting</title>
+    <meta name="description" content="Personalized Generative Engine Optimization (GEO) visibility benchmark across Google Gemini, ChatGPT, and Perplexity.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #1e1e2e;
+            --surface-dark: #11111b;
+            --surface-card: #181825;
+            --text-color: #cdd6f4;
+            --subtext-color: #a6adc8;
+            --accent-pink: #f38ba8;
+            --accent-cyan: #89dceb;
+            --accent-teal: #94e2d5;
+            --accent-green: #a6e3a1;
+            --accent-yellow: #f9e2af;
+            --border-color: #45475a;
+            --font-mono: 'Space Mono', monospace;
+            --font-sans: 'Nunito', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        nav {
+            max-width: 960px;
+            margin: 2rem auto 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 0.5rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        nav a {
+            color: var(--accent-pink);
+            border-bottom: 2px dashed var(--accent-pink);
+            padding-bottom: 2px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--bg-color);
+            background-color: var(--accent-pink);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 0 4rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(243, 139, 168, 0.15);
+            color: var(--accent-pink);
+            border: 1px solid var(--accent-pink);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: clamp(1.9rem, 4vw, 2.9rem);
+            color: var(--accent-cyan);
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--subtext-color);
+            margin-bottom: 2.2rem;
+        }
+
+        /* Proof Card Container */
+        .audit-card {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 6px 6px 0px rgba(137, 220, 235, 0.18);
+            margin-bottom: 2.5rem;
+        }
+
+        .query-box {
+            background: var(--surface-card);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 1.2rem 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.8rem;
+        }
+
+        .query-label {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--accent-yellow);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
+        }
+
+        .query-text {
+            font-family: var(--font-mono);
+            font-size: 1.15rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .entity-box {
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--surface-card);
+        }
+
+        .entity-box.omitted {
+            border-color: var(--accent-pink);
+            background: rgba(243, 139, 168, 0.06);
+        }
+
+        .entity-box.cited {
+            border-color: var(--accent-green);
+            background: rgba(166, 227, 161, 0.06);
+        }
+
+        .status-pill {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .status-pill.red {
+            background: rgba(243, 139, 168, 0.2);
+            color: var(--accent-pink);
+        }
+
+        .status-pill.green {
+            background: rgba(166, 227, 161, 0.2);
+            color: var(--accent-green);
+        }
+
+        .entity-title {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .entity-desc {
+            font-size: 0.95rem;
+            color: var(--subtext-color);
+        }
+
+        /* Voiceover Player */
+        .audio-panel {
+            background: var(--surface-card);
+            border: 1px dashed var(--accent-teal);
+            border-radius: 10px;
+            padding: 1.4rem 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .audio-info h3 {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--accent-teal);
+            margin-bottom: 0.25rem;
+        }
+
+        .audio-info p {
+            font-size: 0.9rem;
+            color: var(--subtext-color);
+        }
+
+        .play-btn {
+            background: var(--accent-teal);
+            color: var(--bg-color);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.75rem 1.4rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            background: var(--accent-yellow);
+        }
+
+        /* Action / Booking Panel */
+        .cta-section {
+            background: var(--surface-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2.2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-mono);
+            color: var(--accent-yellow);
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-section p {
+            color: var(--subtext-color);
+            max-width: 640px;
+            margin: 0 auto 1.6rem auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-pink);
+            color: var(--bg-color);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.95rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-color);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.95rem 1.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--accent-cyan);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--subtext-color);
+        }
+    </style>
 </head>
-<body style="background:#1e1e2e;color:#cdd6f4;font-family:monospace;padding:40px;text-align:center;">
-    Redirecting to your personalized AI Visibility Audit...
+<body>
+    <nav>
+        <a href="/index.html">← FatCat AI Consulting Home</a>
+        <div>
+            <a href="/blog-ai-visibility-audit.html">GEO Methodology</a> &nbsp;|&nbsp;
+            <a href="/contact.html">Schedule Walkthrough</a>
+        </div>
+    </nav>
+
+    <main>
+        <span class="badge">Live LLM Citation Benchmark</span>
+        <h1 id="headline">AI Search Visibility Audit</h1>
+        <p class="subtitle" id="subheadline">
+            Benchmarking how Google Gemini, ChatGPT, and Perplexity route enterprise B2B buyers in your category.
+        </p>
+
+        <section class="audit-card">
+            <div class="query-box">
+                <div class="query-label">Audited High-Intent Buyer Prompt (Google Gemini & ChatGPT)</div>
+                <div class="query-text" id="audit-query">"Enterprise B2B supplier and technical capabilities"</div>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="entity-box omitted">
+                    <span class="status-pill red">✖ OMITTED FROM AI CITATIONS (0% SHARE)</span>
+                    <div class="entity-title" id="target-company">Your Company</div>
+                    <p class="entity-desc" id="target-desc">
+                        Not cited in primary generative search recommendations when procurement teams query this capability.
+                    </p>
+                </div>
+
+                <div class="entity-box cited">
+                    <span class="status-pill green">✔ CITED AS PRIMARY AI RECOMMENDATION</span>
+                    <div class="entity-title" id="competitor-name">Category Competitors</div>
+                    <p class="entity-desc" id="competitor-desc">
+                        Actively cited by LLMs due to structured entity graphs, schema density, and third-party citation authority.
+                    </p>
+                </div>
+            </div>
+
+            <div class="audio-panel">
+                <div class="audio-info">
+                    <h3>🔊 45-Second Executive Audio Briefing</h3>
+                    <p id="audio-status">Listen to the synthesized summary of this visibility gap.</p>
+                </div>
+                <button class="play-btn" id="play-voiceover-btn" type="button">▶ Play Audio Breakdown</button>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Want Your Brand Cited First by ChatGPT & Gemini?</h2>
+            <p>
+                We engineer entity-level Generative Engine Optimization (GEO) so high-intent enterprise buyers are routed directly to your team instead of your competitors.
+            </p>
+            <div class="cta-buttons">
+                <a id="book-walkthrough-link" href="/contact.html" class="btn-primary">Book 3-Min Audit Walkthrough →</a>
+                <a href="mailto:contact@fatcatai.consulting?subject=Request%20Full%20GEO%20Audit%20Report" class="btn-secondary">Email Engineering Team</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 FatCat AI Consulting | Website: fatcatai.consulting | Email: contact@fatcatai.consulting | Phone/WhatsApp: +91 9433811943</p>
+    </footer>
+
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const company = (params.get('company') || 'Your Organization').trim();
+            const query = (params.get('query') || 'Enterprise B2B solutions & technical capabilities in your sector').trim();
+            const competitor = (params.get('competitor') || 'Top Regional Competitors').trim();
+
+            document.title = `AI Visibility Audit: ${company} | FatCat AI Consulting`;
+            document.getElementById('headline').textContent = `AI Visibility Audit: ${company}`;
+            document.getElementById('audit-query').textContent = `"${query}"`;
+            document.getElementById('target-company').textContent = company;
+            document.getElementById('target-desc').textContent =
+                `When enterprise buyers ask AI engines for "${query}", ${company} is currently omitted from the top recommendations.`;
+            document.getElementById('competitor-name').textContent = competitor;
+            document.getElementById('competitor-desc').textContent =
+                `AI models currently route buyer intent toward ${competitor} as the primary cited provider.`;
+
+            const contactLink = document.getElementById('book-walkthrough-link');
+            contactLink.href = `/contact.html?company=${encodeURIComponent(company)}`;
+
+            const playBtn = document.getElementById('play-voiceover-btn');
+            const audioStatus = document.getElementById('audio-status');
+            let speaking = false;
+
+            playBtn.addEventListener('click', function() {
+                if (!('speechSynthesis' in window)) {
+                    audioStatus.textContent = 'Please check the MP3 voiceover attached directly to your audit email.';
+                    return;
+                }
+                if (speaking) {
+                    window.speechSynthesis.cancel();
+                    speaking = false;
+                    playBtn.textContent = '▶ Play Audio Breakdown';
+                    audioStatus.textContent = 'Playback paused.';
+                    return;
+                }
+                window.speechSynthesis.cancel();
+                const scriptText =
+                    `Hello, this is a brief AI search audit for the leadership team at ${company}. ` +
+                    `In our benchmark analysis of executive procurement queries across Google Gemini and ChatGPT, ` +
+                    `we found that for the buyer query "${query}", ${competitor} was cited as a primary recommendation, ` +
+                    `while ${company} was omitted from the generative search results. ` +
+                    `Click Book 3-Minute Audit Walkthrough below so we can show your team how to capture these citations.`;
+
+                const utterance = new SpeechSynthesisUtterance(scriptText);
+                utterance.rate = 1.0;
+                utterance.pitch = 0.98;
+                utterance.onstart = function() {
+                    speaking = true;
+                    playBtn.textContent = '⏹ Stop Audio';
+                    audioStatus.textContent = `Playing personalized audit briefing for ${company}...`;
+                };
+                utterance.onend = function() {
+                    speaking = false;
+                    playBtn.textContent = '▶ Replay Audio Breakdown';
+                    audioStatus.textContent = 'Briefing complete.';
+                };
+                window.speechSynthesis.speak(utterance);
+            });
+        })();
+    </script>
 </body>
 </html>

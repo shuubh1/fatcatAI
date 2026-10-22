@@ -24,6 +24,8 @@ export default defineConfig(() => {
         input: {
           main: path.resolve(__dirname, 'index.html'),
           contact: path.resolve(__dirname, 'contact.html'),
+          audit: path.resolve(__dirname, 'audit.html'),
+          unsubscribe: path.resolve(__dirname, 'unsubscribe.html'),
           blogAudit: path.resolve(__dirname, 'blog-ai-visibility-audit.html'),
           blogFintech: path.resolve(__dirname, 'blog-geo-fintech.html'),
           blogCited: path.resolve(__dirname, 'blog-how-to-get-cited-by-ai.html'),
