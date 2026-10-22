@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe | FatCat AI Consulting</title>
+    <style>
+        body {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background: #11111b;
+            border: 1px solid #45475a;
+            border-radius: 12px;
+            max-width: 500px;
+            padding: 36px;
+            text-align: center;
+        }
+        h1 { color: #a6e3a1; font-size: 1.6rem; margin-bottom: 12px; }
+        p { color: #bac2de; line-height: 1.6; }
+        a { color: #89dceb; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>✔ You Have Been Unsubscribed</h1>
+        <p id="unsub-msg">Your email address has been added to our permanent suppression list and will no longer receive audit notifications.</p>
+        <p style="margin-top:20px;font-size:0.9rem;"><a href="/index.html">← Return to fatcatai.consulting</a></p>
+    </div>
+    <script>
+        const email = new URLSearchParams(window.location.search).get('email');
+        if (email) {
+            document.getElementById('unsub-msg').textContent =
+                `${email} has been added to our permanent suppression list and will no longer receive audit notifications.`;
+        }
+    </script>
+</body>
+</html>
